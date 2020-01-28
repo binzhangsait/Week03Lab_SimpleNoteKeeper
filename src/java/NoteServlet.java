@@ -35,12 +35,19 @@ public class NoteServlet extends HttpServlet {
         request.setAttribute("guestcount", "<p> you are visitor #" + counter + "!</p>");
         counter++;
 
-        
         Note note = new Note();
         String path = getServletContext().getRealPath("/WEB-INF/note.txt");
         BufferedReader br = new BufferedReader(new FileReader(new File(path)));
         String line1 = br.readLine();
-        String line2 = br.readLine();
+
+//        String line2 = br.readLine();
+        StringBuffer sb = new StringBuffer();
+        String temp = "";
+        while ((temp = br.readLine()) != null) {
+            sb.append(temp);
+            sb.append("\n");
+        }
+        String line2 = sb.toString();
         note.setTitle(line1);
         note.setContents(line2);
         request.setAttribute("note", note);
@@ -62,18 +69,27 @@ public class NoteServlet extends HttpServlet {
         request.setAttribute("guestcount", "<p> you are visitor #" + counter + "!</p>");
         System.out.println("POST");
         counter++;
+
         String title = request.getParameter("title");
         String contents = request.getParameter("contents");
+        System.out.println(contents + "----------->");
         String edit = request.getParameter("edit");
         if (edit != null) {
             String path = getServletContext().getRealPath("/WEB-INF/note.txt");
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
-            pw.write(title+"\n");
+            pw.write(title + "\n");
             pw.write(contents);
-            pw.flush();//!!!!
+            pw.flush();
             BufferedReader br = new BufferedReader(new FileReader(new File(path)));
             String line1 = br.readLine();
-            String line2 = br.readLine();
+//            String line2 = br.readLine();
+            StringBuffer sb = new StringBuffer();
+            String temp = "";
+            while ((temp = br.readLine()) != null) {
+                sb.append(temp);
+                sb.append("\n");
+            }
+            String line2 = sb.toString();
             Note note = new Note(line1, line2);
             request.setAttribute("note", note);
         }

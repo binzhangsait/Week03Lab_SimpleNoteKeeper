@@ -16,7 +16,7 @@
         <h2>view note</h2>
 
         <B> Title: </B> ${note.title} <br>
-        <B> Contents: </B> <br>   ${note.contents} <br>
+        <B> Contents: </B>    ${note.contents} <br>
 
 
         <!--add a link to editnote.jsp-->

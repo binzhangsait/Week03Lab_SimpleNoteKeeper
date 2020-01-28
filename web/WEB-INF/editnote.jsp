@@ -17,7 +17,7 @@
         <!--action is important!!!!-->
         <form method="POST" action="/Week03Lab_SimpleNoteKeeper/note">
             Title<input type="text" name="title" value="${note.title}"><br>
-            Contents:<textarea type="text" name="contents">${note.contents}</textarea><br>
+            Contents:<textarea type="text" name="contents" rows="5" cols="20">${note.contents}</textarea><br>
             <button type="submit" value="save" name="edit">Save</button>
             <!--<input type="submit" value="Save.." />-->
 
